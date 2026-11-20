@@ -1,0 +1,27 @@
+{
+  "name": "graphic-design-portfolio-cms",
+  "version": "1.0.0",
+  "description": "Professional Graphic Design Portfolio Website with Admin Dashboard",
+  "scripts": {
+    "server": "cd server && npm start",
+    "server:dev": "cd server && npm run dev",
+    "portfolio": "cd client/portfolio && npm run dev",
+    "admin": "cd client/admin && npm run dev",
+    "seed": "cd server && npm run seed",
+    "build:portfolio": "cd client/portfolio && npm run build",
+    "build:admin": "cd client/admin && npm run build",
+    "build": "npm run build:portfolio && npm run build:admin"
+  },
+  "keywords": [
+    "graphic-design",
+    "portfolio",
+    "cms",
+    "admin-dashboard",
+    "mern",
+    "react",
+    "tailwind",
+    "mongodb"
+  ],
+  "author": "Alex Rivera",
+  "license": "MIT"
+}
