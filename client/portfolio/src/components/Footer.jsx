@@ -7,7 +7,7 @@ const Footer = () => {
   const { settings } = useSettings();
   const currentYear = new Date().getFullYear();
 
-  const brandName = settings?.designerName || 'Alex Rivera';
+  const brandName = settings?.designerName || 'Gracy Pandya';
   const email = settings?.email || 'hello@riveradesign.studio';
   const whatsapp = settings?.whatsapp || '+15553829401';
   const footerText = settings?.footerText || 'Crafted with precision, passion, and artistic dedication.';
@@ -30,7 +30,7 @@ const Footer = () => {
             <div className="pt-2 flex items-center gap-4 text-xs tracking-wider uppercase text-gray-500 font-semibold">
               <span className="flex items-center gap-1.5 text-emerald-400">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                Available for Select Projects 2026
+                {settings?.availabilityStatus || 'Available for Select Projects 2026'}
               </span>
             </div>
           </div>

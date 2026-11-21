@@ -44,6 +44,11 @@ const aboutSchema = new mongoose.Schema(
       default: 'Alex Rivera',
       trim: true
     },
+    headline: {
+      type: String,
+      default: 'Design Built with Rigor, Craft, and Purpose.',
+      trim: true
+    },
     tagline: {
       type: String,
       default: 'Senior Brand Identity & Visual Designer',

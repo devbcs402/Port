@@ -56,7 +56,7 @@ const HomePage = () => {
   const subheadline =
     settings?.heroSubheadline ||
     'Visual identity, editorial posters, packaging, and digital design crafted with intention, timeless aesthetics, and high-impact visual storytelling.';
-  const designerName = settings?.designerName || 'Alex Rivera';
+  const designerName = settings?.designerName || 'Gracy Pandya';
 
   return (
     <div className="min-h-screen bg-[#FAFAFA]">
@@ -75,7 +75,7 @@ const HomePage = () => {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-200/80 shadow-xs text-xs font-semibold text-gray-800"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Available for Select Projects 2026</span>
+              <span>{settings?.availabilityStatus || 'Available for Select Projects 2026'}</span>
             </motion.div>
 
             {/* Main Headline */}
@@ -121,38 +121,104 @@ const HomePage = () => {
             </motion.div>
           </div>
 
-          {/* Hero Visual Showcase Collage */}
+          {/* Hero Visual Showcase Collage (Dynamically linked to Featured Projects from MongoDB) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-16 sm:mt-20 max-w-6xl mx-auto"
           >
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-              <div className="md:col-span-8 overflow-hidden rounded-3xl bg-gray-100 aspect-[16/10] shadow-xl group border border-gray-100">
-                <img
-                  src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=85"
-                  alt="Creative design packaging showcase"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="md:col-span-4 flex flex-col gap-6">
-                <div className="overflow-hidden rounded-3xl bg-gray-100 aspect-[4/3] shadow-lg group border border-gray-100">
-                  <img
-                    src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=85"
-                    alt="Poster typographic art"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                  />
+            {featuredProjects && featuredProjects.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                {/* Primary Large Showcase */}
+                {featuredProjects[0] && (
+                  <Link
+                    to={`/portfolio/${featuredProjects[0].slug}`}
+                    className="md:col-span-8 overflow-hidden rounded-3xl bg-gray-100 aspect-[16/10] shadow-xl group border border-gray-100 relative block"
+                  >
+                    <img
+                      src={featuredProjects[0].coverImage?.url}
+                      alt={featuredProjects[0].title}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 sm:p-8">
+                      <div className="text-white">
+                        <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider mb-2 inline-block">
+                          {featuredProjects[0].category?.name || 'Featured Project'}
+                        </span>
+                        <h3 className="font-display font-bold text-xl sm:text-2xl">
+                          {featuredProjects[0].title}
+                        </h3>
+                        <p className="text-xs text-gray-200 mt-1 line-clamp-1 max-w-lg">
+                          {featuredProjects[0].shortDescription}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                )}
+
+                {/* Secondary & Tertiary Showcases */}
+                <div className="md:col-span-4 flex flex-col gap-6">
+                  {featuredProjects[1] && (
+                    <Link
+                      to={`/portfolio/${featuredProjects[1].slug}`}
+                      className="overflow-hidden rounded-3xl bg-gray-100 aspect-[4/3] shadow-lg group border border-gray-100 relative block"
+                    >
+                      <img
+                        src={featuredProjects[1].coverImage?.url}
+                        alt={featuredProjects[1].title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                        <div className="text-white">
+                          <span className="text-[10px] uppercase font-bold tracking-wider opacity-90 block">
+                            {featuredProjects[1].category?.name}
+                          </span>
+                          <h4 className="font-display font-bold text-sm sm:text-base leading-tight mt-0.5">
+                            {featuredProjects[1].title}
+                          </h4>
+                        </div>
+                      </div>
+                    </Link>
+                  )}
+
+                  {featuredProjects[2] ? (
+                    <Link
+                      to={`/portfolio/${featuredProjects[2].slug}`}
+                      className="overflow-hidden rounded-3xl bg-gray-100 aspect-[4/3] shadow-lg group border border-gray-100 relative block"
+                    >
+                      <img
+                        src={featuredProjects[2].coverImage?.url}
+                        alt={featuredProjects[2].title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                        <div className="text-white">
+                          <span className="text-[10px] uppercase font-bold tracking-wider opacity-90 block">
+                            {featuredProjects[2].category?.name}
+                          </span>
+                          <h4 className="font-display font-bold text-sm sm:text-base leading-tight mt-0.5">
+                            {featuredProjects[2].title}
+                          </h4>
+                        </div>
+                      </div>
+                    </Link>
+                  ) : featuredProjects[0]?.galleryImages?.[0] ? (
+                    <div className="overflow-hidden rounded-3xl bg-gray-100 aspect-[4/3] shadow-lg group border border-gray-100">
+                      <img
+                        src={featuredProjects[0].galleryImages[0].url}
+                        alt={featuredProjects[0].title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                  ) : null}
                 </div>
-                <div className="overflow-hidden rounded-3xl bg-gray-100 aspect-[4/3] shadow-lg group border border-gray-100">
-                  <img
-                    src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=85"
-                    alt="Specialty coffee packaging branding"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
               </div>
-            </div>
+            ) : (
+              <div className="aspect-[16/8] rounded-3xl bg-gray-50 border border-gray-200/80 flex items-center justify-center">
+                <span className="text-xs uppercase font-bold tracking-wider text-gray-400">Loading Featured Projects...</span>
+              </div>
+            )}
           </motion.div>
         </div>
       </section>

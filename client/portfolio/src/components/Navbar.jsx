@@ -34,7 +34,7 @@ const Navbar = () => {
     { name: 'Contact', path: '/contact' }
   ];
 
-  const brandName = settings?.designerName || 'Alex Rivera';
+  const brandName = settings?.designerName || 'Gracy Pandya';
 
   return (
     <header

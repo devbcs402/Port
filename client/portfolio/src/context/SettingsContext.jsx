@@ -24,6 +24,12 @@ export const SettingsProvider = ({ children }) => {
     fetchSettings();
   }, []);
 
+  useEffect(() => {
+    if (settings?.designerName) {
+      document.title = `${settings.designerName} — Graphic Design & Art Direction`;
+    }
+  }, [settings]);
+
   return (
     <SettingsContext.Provider value={{ settings, loading, refreshSettings: fetchSettings }}>
       {children}

@@ -110,13 +110,14 @@ const SettingsPage = () => {
 
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                Designer Name
+                Designer Name <span className="text-indigo-600 font-normal lowercase">(shows on all website headers & footers)</span>
               </label>
               <input
                 type="text"
                 name="designerName"
                 value={settings?.designerName || ''}
                 onChange={handleChange}
+                placeholder="e.g. Gracy Pandya"
                 className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold focus:outline-none focus:border-slate-900 focus:bg-white"
               />
             </div>
@@ -299,6 +300,20 @@ const SettingsPage = () => {
           </h3>
 
           <div className="space-y-4 pt-2">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Availability Badge / Status
+              </label>
+              <input
+                type="text"
+                name="availabilityStatus"
+                value={settings?.availabilityStatus || ''}
+                onChange={handleChange}
+                placeholder="e.g. Available for Select Projects 2026"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold focus:outline-none focus:border-slate-900 focus:bg-white"
+              />
+            </div>
+
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                 Hero Headline

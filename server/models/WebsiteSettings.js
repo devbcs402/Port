@@ -75,6 +75,11 @@ const websiteSettingsSchema = new mongoose.Schema(
       default: 'Crafted with precision, passion, and artistic dedication.',
       trim: true
     },
+    availabilityStatus: {
+      type: String,
+      default: 'Available for Select Projects 2026',
+      trim: true
+    },
     heroHeadline: {
       type: String,
       default: 'Creative Designs That Make Brands Stand Out.',

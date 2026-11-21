@@ -104,7 +104,9 @@ const ContactPage = () => {
                 Contact Information
               </h3>
               <p className="text-sm text-gray-500 leading-relaxed">
-                Currently booking brand identity, packaging, and art direction commissions for Q1/Q2 2026.
+                {settings?.availabilityStatus
+                  ? `${settings.availabilityStatus} — Booking brand identity, packaging, and art direction commissions.`
+                  : 'Currently booking brand identity, packaging, and art direction commissions for 2026.'}
               </p>
 
               <div className="space-y-4 pt-2">

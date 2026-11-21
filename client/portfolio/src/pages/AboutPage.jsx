@@ -26,7 +26,7 @@ const AboutPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const designerName = about?.designerName || settings?.designerName || 'Alex Rivera';
+  const designerName = about?.designerName || settings?.designerName || 'Gracy Pandya';
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] pt-32 pb-28">
@@ -37,7 +37,7 @@ const AboutPage = () => {
             About the Designer
           </span>
           <h1 className="font-display font-black text-4xl sm:text-6xl text-gray-950 tracking-tight leading-tight">
-            Design Built with Rigor, Craft, and Purpose.
+            {about?.headline || 'Design Built with Rigor, Craft, and Purpose.'}
           </h1>
           <p className="text-gray-600 text-lg sm:text-xl leading-relaxed">
             {about?.tagline || 'Senior Brand Identity & Visual Designer'}

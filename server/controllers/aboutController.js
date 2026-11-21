@@ -1,4 +1,5 @@
 const About = require('../models/About');
+const WebsiteSettings = require('../models/WebsiteSettings');
 
 // @desc    Get about section information
 // @route   GET /api/about
@@ -83,6 +84,15 @@ const updateAbout = async (req, res, next) => {
         new: true,
         runValidators: true
       });
+    }
+
+    // Automatically synchronize designerName across WebsiteSettings so it reflects everywhere
+    if (req.body.designerName && req.body.designerName.trim()) {
+      await WebsiteSettings.findOneAndUpdate(
+        {},
+        { $set: { designerName: req.body.designerName.trim() } },
+        { upsert: true }
+      );
     }
 
     res.status(200).json({

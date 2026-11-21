@@ -1,4 +1,5 @@
 const WebsiteSettings = require('../models/WebsiteSettings');
+const About = require('../models/About');
 
 // @desc    Get website settings
 // @route   GET /api/settings
@@ -6,10 +7,12 @@ const WebsiteSettings = require('../models/WebsiteSettings');
 const getSettings = async (req, res, next) => {
   try {
     let settings = await WebsiteSettings.findOne();
+    const about = await About.findOne();
+
     if (!settings) {
       settings = await WebsiteSettings.create({
         websiteName: 'Studio Rivera — Graphic Design & Art Direction',
-        designerName: 'Alex Rivera',
+        designerName: about?.designerName || 'Alex Rivera',
         email: 'hello@riveradesign.studio',
         phone: '+1 (555) 382-9401',
         whatsapp: '+15553829401',
@@ -22,6 +25,10 @@ const getSettings = async (req, res, next) => {
         heroHeadline: 'Creative Designs That Make Brands Stand Out.',
         heroSubheadline: 'Visual identity, editorial posters, packaging, and digital design crafted with intention, timeless aesthetics, and high-impact visual storytelling.'
       });
+    } else if (about?.designerName && settings.designerName !== about.designerName) {
+      // Auto-sync if about had an updated designerName
+      settings.designerName = about.designerName;
+      await settings.save();
     }
 
     res.status(200).json({
@@ -47,6 +54,15 @@ const updateSettings = async (req, res, next) => {
         new: true,
         runValidators: true
       });
+    }
+
+    // Automatically synchronize designerName across About section
+    if (req.body.designerName && req.body.designerName.trim()) {
+      await About.findOneAndUpdate(
+        {},
+        { $set: { designerName: req.body.designerName.trim() } },
+        { upsert: true }
+      );
     }
 
     res.status(200).json({

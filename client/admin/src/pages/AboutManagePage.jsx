@@ -95,7 +95,7 @@ const AboutManagePage = () => {
     try {
       const res = await api.put('/about', about);
       if (res.data.success) {
-        setToast({ type: 'success', message: 'About information updated successfully' });
+        setToast({ type: 'success', message: 'About profile & Designer Name updated across all pages!' });
       }
     } catch (err) {
       setToast({
@@ -153,13 +153,14 @@ const AboutManagePage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                Designer Name
+                Designer Name <span className="text-indigo-600 font-normal lowercase">(shows on all website headers & footers)</span>
               </label>
               <input
                 type="text"
                 name="designerName"
                 value={about?.designerName || ''}
                 onChange={handleChange}
+                placeholder="e.g. Gracy Pandya"
                 className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold focus:outline-none focus:border-slate-900 focus:bg-white"
               />
             </div>
@@ -176,6 +177,20 @@ const AboutManagePage = () => {
                 className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold focus:outline-none focus:border-slate-900 focus:bg-white"
               />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+              About Page Headline
+            </label>
+            <input
+              type="text"
+              name="headline"
+              value={about?.headline || ''}
+              onChange={handleChange}
+              placeholder="e.g. Design Built with Rigor, Craft, and Purpose."
+              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold focus:outline-none focus:border-slate-900 focus:bg-white"
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
