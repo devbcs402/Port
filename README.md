@@ -2,6 +2,8 @@
 
 A modern, production-ready **Graphic Design Portfolio Website** with a completely separate **Admin CMS Dashboard**, built with the **MERN Stack** (MongoDB, Express, React, Node.js), Tailwind CSS, Framer Motion, and Cloudinary.
 
+> 🚀 **Looking to deploy for free?** Follow the step-by-step [**Complete 100% Free Deployment Guide**](./DEPLOYMENT_GUIDE.md) to launch the backend on Render and both frontends on Vercel for \$0/month.
+
 ---
 
 ## 🌟 Key Features
