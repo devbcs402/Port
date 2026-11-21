@@ -10,19 +10,7 @@ build/
 client/portfolio/dist/
 client/admin/dist/
 
-# Environment Variables & Secrets
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-server/.env
-client/portfolio/.env
-client/admin/.env
 
-# Do not ignore .env.example templates
-!.env.example
-!server/.env.example
 
 # Local Uploads (Ignore uploaded images, preserve folder with .gitkeep)
 server/uploads/*
@@ -64,3 +52,5 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+
